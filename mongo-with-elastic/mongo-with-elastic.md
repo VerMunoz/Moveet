@@ -15,27 +15,33 @@ docker exec -it mongodb bash
 
 3. Comandos base de datos 
 ```
+mongo -u <username> -p <password>
 use <name_database>
 show collections
 
 ```
 ## Elasticsearch
-1. Instalar Elastic 
+1. Crear red 
+```
+docker network create elastic
+```
+
+2. Instalar Elastic 
 ```
 docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
 ```
 
-2. Entrar al contendor 
+3. Entrar al contendor 
 ```
 docker exec -it elasticsearch bash
 ```
 
-3. Verificar la instalación 
+4. Verificar la instalación 
 ```
 curl localhost:9200
 ```
 
-4. Instalar Kibana
+5. Instalar Kibana
 
 ```
 docker run -d --name kibana --net elastic -p 5601:5601 kibana:7.6.1
